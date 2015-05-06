@@ -68,16 +68,12 @@ public class GA {
     private static void mutate(Process process) {
         
         for(int processPos1=0; processPos1 < process.processSize(); processPos1++){
-            // Apply mutation rate
             if(Math.random() < mutationRate){
-                // Get a second random position in the process
                 int processPos2 = (int) (process.processSize() * Math.random());
 
-                // Get the cities at target position in process
                 Task task1 = process.getTask(processPos1);
                 Task task2 = process.getTask(processPos2);
 
-                // Swap them around
                 process.setTask(processPos2, task1);
                 process.setTask(processPos1, task2);
             }
@@ -92,7 +88,7 @@ public class GA {
             int randomId = (int) (Math.random() * pop.populationSize());
             tournament.saveProcess(i, pop.getProcess(randomId));
         }
-        // Get the fittest tour
+
         Process fittest = tournament.getFittest();
         return fittest;
     }
