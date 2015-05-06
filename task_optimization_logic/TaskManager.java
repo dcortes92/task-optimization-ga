@@ -31,4 +31,8 @@ public class TaskManager {
 	public static void setMatrix(int [][] matrix) {
 		referenceMatrix = matrix;
 	}
+    
+    public static int [][] getMatrix() {
+        return referenceMatrix;
+    }
 }

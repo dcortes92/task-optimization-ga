@@ -17,4 +17,9 @@ public class Task {
 	public String toString() {
 		return "x: " + x + " y: " + y;
 	}
+	
+	public int timeTo(Task task) {
+		int [][] tempMatrix = TaskManager.getMatrix();
+		return tempMatrixp[this.x][task.y];
+	}
 }
