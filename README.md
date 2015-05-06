@@ -1,4 +1,4 @@
-# Task Manager Optimization
+Task Manager Optimization
 ===============
 
 <p>This is an adaptation of the traveling salesman problem (http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5). 
