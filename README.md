@@ -18,7 +18,7 @@ In this case, the traveler is seen as a process of tasks of e.g. a manufacturing
 This can be read as: "To go from task A to task B it takes 2 hours". Going from task A to task A takes 0 hours, and so on.
 
 ## Input
-<p>The input is the matrix like the previous example.</p>
+<p>The only input required is an int with the dimensions of the matrix.</p>
 
 ## Output
 <p>The output is a process, ordering the tasks according to the solution provided by the GA. For example, 
