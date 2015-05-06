@@ -34,8 +34,7 @@ public class MainClass {
 			
 			//Let's see what the reference matrix is
 			System.out.println("\n**** Generated Matrix ****\n");
-			TaskManager.printMatrix();
-			System.out.println("\n****    End Matrix    ****\n");
+			TaskManager.printMatrix();			
 			
 			Population pop = new Population(50, true);
 	        System.out.println("Initial duration: " + pop.getFittest().getDuration());

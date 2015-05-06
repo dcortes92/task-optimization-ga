@@ -20,8 +20,15 @@ public class TaskManager {
     }
     
     public static void printMatrix() {
-		for (int i = 0; i < referenceMatrix.length; i++) {
-			for (int j = 0; j < referenceMatrix.length; j++) {
+        System.out.print("  ");
+        for (int i = 0; i < numberOfTasks(); i++) {
+            System.out.print(tasks.get(i).label + " ");
+        }
+         System.out.println("");
+        
+		for (int i = 0; i < numberOfTasks(); i++) {
+            System.out.print(tasks.get(i).label + " ");
+			for (int j = 0; j < numberOfTasks(); j++) {
 				System.out.print(referenceMatrix[i][j] + " ");
 			}
 			System.out.println("\n");
