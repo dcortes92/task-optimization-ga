@@ -2,7 +2,7 @@ package task_optimization_logic;
 
 public class GA {
 	private static final double mutationRate = 0.015;
-    private static final int processnamentSize = 5;
+    private static final int tournamentSize = 5;
     private static final boolean elitism = true;
 	
 	public static Population evolvePopulation(Population pop) {
@@ -16,8 +16,8 @@ public class GA {
 
         for (int i = elitismOffset; i < newPopulation.populationSize(); i++) {
             
-            Process parent1 = processnamentSelection(pop);
-            Process parent2 = processnamentSelection(pop);
+            Process parent1 = tournamentSelection(pop);
+            Process parent2 = tournamentSelection(pop);
             
             Process child = crossover(parent1, parent2);
 

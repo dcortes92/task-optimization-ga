@@ -3,7 +3,7 @@ package task_optimization_logic;
 public class Population {
 	Process[] processes;
 	
-	public Pupulation(int populationSize, boolean initialise) {
+	public Population(int populationSize, boolean initialise) {
 		processes = new Process[populationSize];
 		
 		if (initialise) {

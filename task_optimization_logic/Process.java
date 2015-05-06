@@ -15,7 +15,7 @@ public class Process {
 		}
 	}
 	
-	public Process(ArrayList<task> process) {
+	public Process(ArrayList<Task> process) {
 		this.process = process;
 	}
 	

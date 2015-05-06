@@ -3,10 +3,12 @@ package task_optimization_logic;
 public class Task {
 	public int x;
 	public int y;
+	public String label;
 	
-	public Task (int x, int y) {
+	public Task (int x, int y, String label) {
 		this.x = x;
 		this.y = y;
+		this.label = label;
 	}
 	
 	public void test() {
@@ -15,11 +17,11 @@ public class Task {
 	
 	@Override
 	public String toString() {
-		return "x: " + x + " y: " + y;
+		return this.label;
 	}
 	
 	public int timeTo(Task task) {
 		int [][] tempMatrix = TaskManager.getMatrix();
-		return tempMatrixp[this.x][task.y];
+		return tempMatrix[this.x][task.y];
 	}
 }
