@@ -56,12 +56,9 @@ public class Process {
 
                 if(taskIndex+1 < processSize()){
                     toTask = getTask(taskIndex+1);
-                }
-                else{
-                    toTask = getTask(0);
+                    processDuration += fromTask.timeTo(toTask);
                 }
                 
-                processDuration += fromTask.timeTo(toTask);
             }
             hours = processDuration;
         }
@@ -78,9 +75,9 @@ public class Process {
     
     @Override
     public String toString() {
-        String geneString = "|";
+        String geneString = "";
         for (int i = 0; i < processSize(); i++) {
-            geneString += getTask(i)+"|";
+            geneString += getTask(i)+" | ";
         }
         return geneString;
     }
