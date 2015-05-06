@@ -21,11 +21,9 @@ public class MainClass {
 		
 		//Create the taskManager
 		for (int x = 0; x < matrixSize; x++) {
-			for (int y = 0; y < matrixSize; y++) {
-				String label = new Character((char) labelCounter).toString();
-				TaskManager.addTask(new Task(x, y, label));
-				labelCounter++;
-			}
+			String label = new Character((char) labelCounter).toString();
+			TaskManager.addTask(new Task(x, x, label));
+			labelCounter++;
 		}
 		
 		//Add the reference of the matrix to the task manager.
@@ -34,7 +32,21 @@ public class MainClass {
 		//Let's see what the reference matrix is
 		TaskManager.printMatrix();
 		
-		System.out.println(TaskManager.getTask(0).toString());
+		//System.out.println(TaskManager.getTask(0).toString());
+		
+		Population pop = new Population(50, true);
+        System.out.println("Initial duration: " + pop.getFittest().getDuration());
+        
+        pop = GA.evolvePopulation(pop);
+        for (int i = 0; i < 100; i++) {
+            pop = GA.evolvePopulation(pop);
+        }
+
+        // Print final results
+        System.out.println("Finished");
+        System.out.println("Final duration: " + pop.getFittest().getDuration());
+        System.out.println("Solution:");
+        System.out.println(pop.getFittest());
 		
 	}
 }
