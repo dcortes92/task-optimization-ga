@@ -1,15 +1,33 @@
 
 package task_optimization_logic;
 
+import java.util.ArrayList;
+
 public class MainClass {
 	public static void main (String args[]) {
 		int matrixSize = 0;
-		int labelCounter = 65;		
-		String input = System.console().readLine("\nEnter matrix size: ");
+		int labelCounter = 65;
+		ArrayList<Integer> taskDurationArr = new ArrayList<Integer>();
+		String label = "";
+		String intputMatrixSize = "";
+		String inputTaskDuration = "";
+		
+		intputMatrixSize = System.console().readLine("\nEnter matrix size: ");
 		try {
-			matrixSize = Integer.parseInt(input);
+			matrixSize = Integer.parseInt(intputMatrixSize);
 			//reference matrix
 			int[][] taskMatrix = new int[matrixSize][matrixSize];
+			
+			inputTaskDuration = System.console().readLine("\nEnter duration for the " + matrixSize + " tasks (separated by space): ");
+			
+			System.out.println("\n**** Task Duration ****\n");
+			
+			for (String retval: inputTaskDuration.split(" ")) {
+				label = new Character((char) labelCounter).toString();
+				taskDurationArr.add(Integer.parseInt(retval));
+				System.out.print(label + ": " + Integer.parseInt(retval) + " ");
+				labelCounter++;
+		    }
 			
 			for (int x = 0; x < matrixSize; x++) {
 				for (int y = 0; y < matrixSize; y++) {
@@ -22,10 +40,11 @@ public class MainClass {
 				}
 			}
 			
+			labelCounter = 65;
 			//Create the taskManager
 			for (int x = 0; x < matrixSize; x++) {
-				String label = new Character((char) labelCounter).toString();
-				TaskManager.addTask(new Task(x, x, label));
+				label = new Character((char) labelCounter).toString();
+				TaskManager.addTask(new Task(x, x, taskDurationArr.get(x), label));
 				labelCounter++;
 			}
 			
@@ -51,7 +70,7 @@ public class MainClass {
 	        System.out.println(pop.getFittest());
 		}
 		catch (Exception ex) {
-			System.out.println("Matrix size must be an integer");
+			System.out.println("\n*** All intput must be integers: " + ex.getMessage() + " ***");
 		}
 	}
 }
