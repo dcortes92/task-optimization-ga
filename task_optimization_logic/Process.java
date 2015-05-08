@@ -7,7 +7,7 @@ public class Process {
 	private ArrayList<Task> process = new ArrayList<Task>();
 	
 	private double fitness = 0;
-	private int hours = 0;
+	private double hours = 0;
 	
 	public Process() {
 		for (int i = 0; i < TaskManager.numberOfTasks(); i++) {
@@ -44,9 +44,9 @@ public class Process {
         return fitness;
     }
 		
-    public int getDuration(){
+    public double getDuration(){
         if (hours == 0) {
-            int processDuration = 0;
+            double processDuration = 0;
             
             for (int taskIndex=0; taskIndex < processSize(); taskIndex++) {
                 

@@ -7,7 +7,7 @@ public class MainClass {
 	public static void main (String args[]) {
 		int matrixSize = 0;
 		int labelCounter = 65;
-		ArrayList<Integer> taskDurationArr = new ArrayList<Integer>();
+		ArrayList<Double> taskDurationArr = new ArrayList<Double>();
 		String label = "";
 		String intputMatrixSize = "";
 		String inputTaskDuration = "";
@@ -16,7 +16,7 @@ public class MainClass {
 		try {
 			matrixSize = Integer.parseInt(intputMatrixSize);
 			//reference matrix
-			int[][] taskMatrix = new int[matrixSize][matrixSize];
+			double[][] taskMatrix = new double[matrixSize][matrixSize];
 			
 			inputTaskDuration = System.console().readLine("\nEnter duration for the " + matrixSize + " tasks (separated by space): ");
 			
@@ -24,8 +24,9 @@ public class MainClass {
 			
 			for (String retval: inputTaskDuration.split(" ")) {
 				label = new Character((char) labelCounter).toString();
-				taskDurationArr.add(Integer.parseInt(retval));
-				System.out.print(label + ": " + Integer.parseInt(retval) + " ");
+				double temp = Double.parseDouble(retval);
+				taskDurationArr.add(temp);
+				System.out.print(label + ": " + temp + " ");
 				labelCounter++;
 		    }
 			
@@ -35,7 +36,7 @@ public class MainClass {
 						taskMatrix[x][y] = 0;
 					}
 					else {
-						taskMatrix[x][y] = (int)(Math.random()*10);
+						taskMatrix[x][y] = RandomDecimal.generate(1, 10);
 					}
 				}
 			}
@@ -70,7 +71,7 @@ public class MainClass {
 	        System.out.println(pop.getFittest());
 		}
 		catch (Exception ex) {
-			System.out.println("\n*** All intput must be integers: " + ex.getMessage() + " ***");
+			System.out.println("\n*** Size of matriz must be int.\nTask duration can be int or decimal (e.g. 1.1 2.3).\nError " + ex.getMessage() + " ***");
 		}
 	}
 }

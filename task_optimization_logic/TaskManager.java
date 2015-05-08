@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TaskManager {
 	
     private static ArrayList<Task> tasks = new ArrayList<Task>();
-    private static int[][] referenceMatrix;
+    private static double[][] referenceMatrix;
 
     public static void addTask(Task task) {
         tasks.add(task);
@@ -20,26 +20,26 @@ public class TaskManager {
     }
     
     public static void printMatrix() {
-        System.out.print("  ");
+        System.out.print("    ");
         for (int i = 0; i < numberOfTasks(); i++) {
-            System.out.print(tasks.get(i).label + " ");
+            System.out.print(tasks.get(i).label + "    ");
         }
          System.out.println("");
         
 		for (int i = 0; i < numberOfTasks(); i++) {
             System.out.print(tasks.get(i).label + " ");
 			for (int j = 0; j < numberOfTasks(); j++) {
-				System.out.print(referenceMatrix[i][j] + " ");
+				System.out.print(String.format("%." + 2 + "f", referenceMatrix[i][j]) + " ");
 			}
 			System.out.println("\n");
 		}
 	}
 	
-	public static void setMatrix(int [][] matrix) {
+	public static void setMatrix(double [][] matrix) {
 		referenceMatrix = matrix;
 	}
     
-    public static int [][] getMatrix() {
+    public static double [][] getMatrix() {
         return referenceMatrix;
     }
 }

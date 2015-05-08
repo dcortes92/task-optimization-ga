@@ -3,10 +3,10 @@ package task_optimization_logic;
 public class Task {
 	public int x;
 	public int y;
-	public int duration;
+	public double duration;
 	public String label;
 	
-	public Task (int x, int y, int duration, String label) {
+	public Task (int x, int y, double duration, String label) {
 		this.x = x;
 		this.y = y;
 		this.label = label;
@@ -22,8 +22,8 @@ public class Task {
 		return this.label;
 	}
 	
-	public int timeTo(Task task) {
-		int [][] tempMatrix = TaskManager.getMatrix();
+	public double timeTo(Task task) {
+		double [][] tempMatrix = TaskManager.getMatrix();
 		return tempMatrix[this.x][task.y];
 	}
 }
