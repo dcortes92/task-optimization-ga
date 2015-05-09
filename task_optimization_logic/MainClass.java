@@ -21,7 +21,7 @@ public class MainClass {
 			BufferedReader reader = new BufferedReader(inputStreamReader);
 			System.out.print("\nMachines? ");
 			inputNumberOfMachines = reader.readLine();
-			System.out.print("\nDimensions? ");
+			System.out.print("\nTasks? ");
 			inputMachineSize = reader.readLine();
 			
 			//parse read data
