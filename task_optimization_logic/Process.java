@@ -47,20 +47,20 @@ public class Process {
     public double getDuration(){
         if (hours == 0) {
             double processDuration = 0;
-            
-            for (int taskIndex=0; taskIndex < processSize(); taskIndex++) {
-                
-                Task fromTask = getTask(taskIndex);
-
-                Task toTask;
-                
-                //processDuration += fromTask.duration;
-
-                if(taskIndex+1 < processSize()){
-                    toTask = getTask(taskIndex+1);
-                    processDuration += fromTask.timeTo(toTask);
+            for (int machineIndex = 0; machineIndex < MachineManager.numberOfMachines(); machineIndex++) {
+                for (int taskIndex=0; taskIndex < processSize(); taskIndex++) {
+    
+                    Task fromTask = getTask(taskIndex);
+    
+                    Task toTask;
+                    
+                    processDuration += MachineManager.getTaskDuration(taskIndex, machineIndex);
+    
+                    if(taskIndex+1 < processSize()){
+                        toTask = getTask(taskIndex+1);
+                        processDuration += MachineManager.getMachine(machineIndex).getMachine()[fromTask.x][toTask.y];
+                    }
                 }
-                
             }
             hours = processDuration;
         }

@@ -26,7 +26,7 @@ public class MachineManager {
 		durationMatrix = matrix;
 	}
 	
-	public double getTaskDuration (int taskIndex, int machineIndex) {
+	public static double getTaskDuration (int taskIndex, int machineIndex) {
 		return durationMatrix[taskIndex][machineIndex];
 	}
 	
