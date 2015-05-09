@@ -21,4 +21,12 @@ public class TaskManager {
     public static ArrayList<Task> getTasks() {
         return tasks;
     }
+    
+    public static void printTasks () {
+        System.out.println("\n*** Tasks *** ");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.print(tasks.get(i) + " ");
+        }
+        System.out.println("");
+    }
 }

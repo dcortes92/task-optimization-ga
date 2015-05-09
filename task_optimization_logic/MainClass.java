@@ -9,10 +9,11 @@ public class MainClass {
 	public static void main (String args[]) {
 		String inputMachineSize = "";
 		String inputNumberOfMachines = "";
-		String inputNumberOfTasks = "";
 		int labelCounterTasks = 65; //asscii code for letter A
 		int labelCounterMachines = 0;
 		int machineSize, numberOfMachines, numberOfTasks = 0;
+		double[][] durationMatrix;
+		double[][] machine;
 		
 		try {
 			//read input
@@ -22,13 +23,55 @@ public class MainClass {
 			inputNumberOfMachines = reader.readLine();
 			System.out.print("\nDimensions? ");
 			inputMachineSize = reader.readLine();
-			System.out.print("\nTasks? ");
-			inputNumberOfTasks = reader.readLine();
 			
 			//parse read data
 			numberOfMachines = Integer.parseInt(inputNumberOfMachines);
 			machineSize = Integer.parseInt(inputMachineSize);
-			numberOfTasks = Integer.parseInt(inputNumberOfTasks);
+			
+			//create the taskManager
+			for (int x = 0; x < machineSize; x++) {
+				String label = new Character((char) labelCounterTasks).toString();
+				TaskManager.addTask(new Task(x, x, label));
+				labelCounterTasks++;
+			}
+			
+			//create machines
+			for(int x = 0; x < numberOfMachines; x++) {
+				//create single machine
+				Machine machineObj = new Machine("m"+ (labelCounterMachines+1));
+				machine = new double[machineSize][machineSize];
+				//populate it with random data
+				for (int i = 0; i < machineSize; i++) {
+					for (int j = 0; j < machineSize; j++) {
+						if (i == j) {
+							machine[i][j] = 0;
+						}
+						else {
+							machine[i][j] = RandomDecimal.generate(1, 10);
+						}
+					}
+				}
+				machineObj.setMachine(machine);
+				//add created machine to the machine manager
+				MachineManager.addMachine(machineObj);
+				labelCounterMachines++;
+			}
+			
+			//create matrix that holds the duration of a task in a specific machine
+			durationMatrix = new double[machineSize][numberOfMachines];
+			for(int i = 0; i < machineSize; i++) {
+				for(int j = 0; j < numberOfMachines; j++) {
+					durationMatrix[i][j] = RandomDecimal.generate(1, 10);
+				}
+			}
+			MachineManager.setDurationMatrix(durationMatrix);
+			
+			////////////////// Done with the set up /////////////////////
+			TaskManager.printTasks();
+			MachineManager.printMachines();
+			MachineManager.printDurationMatrix();
+			
+			/////////////// Using the Genetic Algorithm ////////////////
 		}
 		catch (Exception ex) {
 			System.out.println("\n*** Wrong input.\nError " + ex.getMessage() + " ***");
