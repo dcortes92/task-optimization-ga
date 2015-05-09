@@ -54,7 +54,7 @@ public class Process {
 
                 Task toTask;
                 
-                processDuration += fromTask.duration;
+                //processDuration += fromTask.duration;
 
                 if(taskIndex+1 < processSize()){
                     toTask = getTask(taskIndex+1);
