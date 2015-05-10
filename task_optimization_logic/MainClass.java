@@ -14,6 +14,7 @@ public class MainClass {
 		int machineSize, numberOfMachines, numberOfTasks = 0;
 		double[][] durationMatrix;
 		double[][] machine;
+		double[][] solutionMatrix;
 		
 		try {
 			//read input
@@ -59,6 +60,11 @@ public class MainClass {
 			
 			//create matrix that holds the duration of a task in a specific machine
 			durationMatrix = new double[machineSize][numberOfMachines];
+			//solution matrix
+			solutionMatrix = new double[machineSize][numberOfMachines];
+			Solution.solutionMatrix = solutionMatrix;
+			Solution.x = machineSize;
+			Solution.y = numberOfMachines;
 			for(int i = 0; i < machineSize; i++) {
 				for(int j = 0; j < numberOfMachines; j++) {
 					durationMatrix[i][j] = RandomDecimal.generate(1, 10);
@@ -75,8 +81,13 @@ public class MainClass {
 			/////////////// Using the Genetic Algorithm ////////////////
 			Population pop = new Population(50, true);
 	        System.out.println("Initial duration: " + pop.getFittest().getDuration());
+			
+			System.out.println("Initial solution:" + pop.getFittest());
+			
+			System.out.println("Temp solution matrix");
+			Solution.printSolutionMatrix();
 	        
-	        pop = GA.evolvePopulation(pop);
+	        /*pop = GA.evolvePopulation(pop);
 	        for (int i = 0; i < 100; i++) {
 	            pop = GA.evolvePopulation(pop);
 	        }
@@ -85,7 +96,7 @@ public class MainClass {
 	        System.out.println("Finished");
 	        System.out.println("Final duration: " + pop.getFittest().getDuration());
 	        System.out.println("Solution:");
-	        System.out.println(pop.getFittest());
+	        System.out.println(pop.getFittest());*/
 		}
 		catch (Exception ex) {
 			System.out.println("\n*** Wrong input.\nError " + ex.getMessage() + " ***");

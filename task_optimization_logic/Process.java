@@ -47,7 +47,8 @@ public class Process {
     public double getDuration(){
         if (hours == 0) {
             double processDuration = 0;
-            for (int machineIndex = 0; machineIndex < MachineManager.numberOfMachines(); machineIndex++) {
+            Machine currentMachine;
+            /*for (int machineIndex = 0; machineIndex < MachineManager.numberOfMachines(); machineIndex++) {
                 for (int taskIndex=0; taskIndex < processSize(); taskIndex++) {
     
                     Task fromTask = getTask(taskIndex);
@@ -61,8 +62,49 @@ public class Process {
                         processDuration += MachineManager.getMachine(machineIndex).getMachine()[fromTask.x][toTask.y];
                     }
                 }
+            }*/
+            
+            double initialTime = 0;
+            
+            for (int i = 0; i < Solution.x ; i++) {
+                for (int j = 0; j < Solution.y; j++) {
+                    if (i == 0) {
+                        Solution.solutionMatrix[i][j] = initialTime + MachineManager.getTaskDuration(getTask(i).x,j);
+                        initialTime = Solution.solutionMatrix[i][j];
+                    }
+                    else {
+                        double tempDuration = 0;
+                        Task fromTask = getTask(i);
+                        Task toTask = null;
+                        
+                        if (j == 0) {
+                            tempDuration = Solution.solutionMatrix[i-1][j] + MachineManager.getTaskDuration(getTask(i).x,j);
+                            if (i+1 < processSize()) {
+                                toTask = getTask(i+1);
+                                //tempDuration += MachineManager.getMachine(i).getMachine()[fromTask.x][toTask.y];
+                            }
+                        }
+                        else {
+                            tempDuration = Solution.solutionMatrix[i][j-1] + MachineManager.getTaskDuration(getTask(i).x,j);
+                            double tempSubs = 0;
+                            double setUp = 0;
+                            tempSubs = tempDuration - Solution.solutionMatrix[i][j-1];
+                            
+                            if(toTask != null){
+                                setUp = MachineManager.getMachine(i).getMachine()[fromTask.x][toTask.y];
+                            }
+                            
+                            if (tempSubs < (MachineManager.getTaskDuration(i,j) + setUp)) {
+                                tempDuration = Solution.solutionMatrix[i][j-1] + MachineManager.getTaskDuration(getTask(i).x,j);
+                            }
+                        }
+                          
+                        Solution.solutionMatrix[i][j] = tempDuration;
+                    }
+                }
             }
-            hours = processDuration;
+            
+            hours = 0;// Solution.solutionMatrix[Solution.x][Solution.y];
         }
         return hours;
     }
