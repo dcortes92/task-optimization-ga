@@ -83,20 +83,18 @@ public class MainClass {
 	        System.out.println("Initial duration: " + pop.getFittest().getDuration());
 			
 			System.out.println("Initial solution:" + pop.getFittest());
-			
-			System.out.println("Temp solution matrix");
-			Solution.printSolutionMatrix();
 	        
-	        /*pop = GA.evolvePopulation(pop);
+	        pop = GA.evolvePopulation(pop);
 	        for (int i = 0; i < 100; i++) {
 	            pop = GA.evolvePopulation(pop);
 	        }
 	
 	        // Print final results
-	        System.out.println("Finished");
 	        System.out.println("Final duration: " + pop.getFittest().getDuration());
+			System.out.println("Solution matrix:");
+			Solution.printSolutionMatrix();
 	        System.out.println("Solution:");
-	        System.out.println(pop.getFittest());*/
+	        System.out.println(pop.getFittest());
 		}
 		catch (Exception ex) {
 			System.out.println("\n*** Wrong input.\nError " + ex.getMessage() + " ***");

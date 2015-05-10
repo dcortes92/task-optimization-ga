@@ -48,21 +48,6 @@ public class Process {
         if (hours == 0) {
             double processDuration = 0;
             Machine currentMachine;
-            /*for (int machineIndex = 0; machineIndex < MachineManager.numberOfMachines(); machineIndex++) {
-                for (int taskIndex=0; taskIndex < processSize(); taskIndex++) {
-    
-                    Task fromTask = getTask(taskIndex);
-    
-                    Task toTask;
-                    
-                    processDuration += MachineManager.getTaskDuration(taskIndex, machineIndex);
-    
-                    if(taskIndex+1 < processSize()){
-                        toTask = getTask(taskIndex+1);
-                        processDuration += MachineManager.getMachine(machineIndex).getMachine()[fromTask.x][toTask.y];
-                    }
-                }
-            }*/
             
             double initialTime = 0;
             
@@ -74,35 +59,30 @@ public class Process {
                     }
                     else {
                         double tempDuration = 0;
-                        Task fromTask = getTask(i);
-                        Task toTask = null;
+                        Task fromTask = null;
+                        Task toTask = getTask(i);
                         
                         if (j == 0) {
                             tempDuration = Solution.solutionMatrix[i-1][j] + MachineManager.getTaskDuration(getTask(i).x,j);
-                            if (i+1 < processSize()) {
-                                toTask = getTask(i+1);
-                                //tempDuration += MachineManager.getMachine(i).getMachine()[fromTask.x][toTask.y];
+                            if (i-1 >= 0) {
+                                fromTask = getTask(i-1);
+                                tempDuration += MachineManager.getMachine(j).getMachine()[fromTask.x][toTask.y];
                             }
                         }
                         else {
-                            tempDuration = Solution.solutionMatrix[i][j-1] + MachineManager.getTaskDuration(getTask(i).x,j);
+                            double setUp = 0;
+                            
+                            if(i-1 >= 0) {
+                                fromTask = getTask(i-1);
+                                setUp = MachineManager.getMachine(j).getMachine()[fromTask.x][toTask.y];
+                            }
+                            
+                            tempDuration = Solution.solutionMatrix[i][j-1] + MachineManager.getTaskDuration(getTask(i).x,j) + setUp;
                             double tempSubs = tempDuration - Solution.solutionMatrix[i-1][j];
                             
-                            if (tempSubs < MachineManager.getTaskDuration(getTask(i).x, j) ) {
-                                tempDuration = Solution.solutionMatrix[i-1][j] + MachineManager.getTaskDuration(getTask(i).x, j);
+                            if (tempSubs < ( MachineManager.getTaskDuration(getTask(i).x, j) + setUp ) ) {
+                                tempDuration = Solution.solutionMatrix[i-1][j] + MachineManager.getTaskDuration(getTask(i).x, j) + setUp;
                             }
-                            
-                            /*double tempSubs = 0;
-                            double setUp = 0;
-                            tempSubs = tempDuration - Solution.solutionMatrix[i][j-1];
-                            
-                            if(toTask != null){
-                                setUp = MachineManager.getMachine(i).getMachine()[fromTask.x][toTask.y];
-                            }
-                            
-                            if (tempSubs < (MachineManager.getTaskDuration(i,j) + setUp)) {
-                                tempDuration = Solution.solutionMatrix[i][j-1] + MachineManager.getTaskDuration(getTask(i).x,j);
-                            }*/
                         }
                           
                         Solution.solutionMatrix[i][j] = tempDuration;
@@ -110,7 +90,7 @@ public class Process {
                 }
             }
             
-            hours = 0;// Solution.solutionMatrix[Solution.x][Solution.y];
+            hours = Solution.solutionMatrix[Solution.x-1][Solution.y-1];
         }
         return hours;
     }
