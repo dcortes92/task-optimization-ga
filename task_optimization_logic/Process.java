@@ -86,7 +86,7 @@ public class Process {
                         }
                         else {
                             tempDuration = Solution.solutionMatrix[i][j-1] + MachineManager.getTaskDuration(getTask(i).x,j);
-                            double tempSubs = 0;
+                            /*double tempSubs = 0;
                             double setUp = 0;
                             tempSubs = tempDuration - Solution.solutionMatrix[i][j-1];
                             
@@ -96,7 +96,7 @@ public class Process {
                             
                             if (tempSubs < (MachineManager.getTaskDuration(i,j) + setUp)) {
                                 tempDuration = Solution.solutionMatrix[i][j-1] + MachineManager.getTaskDuration(getTask(i).x,j);
-                            }
+                            }*/
                         }
                           
                         Solution.solutionMatrix[i][j] = tempDuration;
